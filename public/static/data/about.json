@@ -1,0 +1,9 @@
+{
+    "paragraph": "My name is Drew and I currently live in Portland, Oregon. I am currently working as a Data Engineer/Consultant while continuing to grow my skills particularly in AI and LLMs. In addition to my main focus of data engineering, I also enjoy studying other elements of software development to assist in gaining a deeper understanding of the tech industry as a whole! In my free time, I enjoy creating and listening to music, doing Danzan Ryu Ju-Jitsu, and spending time in the beautiful outdoors, exploring with my wife and two daughters.",
+    "resumeLink": "https://yourresumelink.com",
+    "socialLinks": {
+      "LinkedIn": "https://www.linkedin.com/in/drew-riley-white/",
+      "GitHub": "https://github.com/Drewrwhite"
+    },
+    "image": "/static/images/yourimage.png"
+  }
