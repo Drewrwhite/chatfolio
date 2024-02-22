@@ -2,63 +2,63 @@
     {
       "name": "Action Responder",
       "description": "ActionResponder is a tool designed to streamline the process of generating responses to trademark office actions. It's like having a high-quality paralegal at your disposal – fast, efficient, and cost-effective. This application guides you through the entire process, from initial case lookup to the final response generation, saving you hours of drafting time.",
-      "image": "/static/images/project1.jpeg",
+      "image": "/images/project1.jpeg",
       "projectLink": "https://www.actionresponder.io/",
       "visualizationLink": "None"
     },
     {
       "name": "Musical Journeys",
       "description": "Musical Journeys is a project that creates a music genre classification machine learning model, gives song recommendations based on what song you classify and suggests a place to visit where others have a similar taste in music.",
-      "image": "/static/images/project2.jpeg",
+      "image": "/images/project2.jpeg",
       "projectLink": "https://github.com/Drewrwhite/muscial_journeys.git",
       "visualizationLink": "https://lookerstudio.google.com/reporting/d58436df-6658-44dd-98e2-5ec8c0674f1c"
     },
     {
       "name": "Weather Database",
       "description": "Project that scrapes the National Weather Service website daily, makes data transformations, stores the data and creates a historical database over time.",
-      "image": "/static/images/project3.jpeg",
+      "image": "/images/project3.jpeg",
       "projectLink": "https://github.com/Drewrwhite/weather_database.git",
       "visualizationLink": "https://lookerstudio.google.com/reporting/7fda1afa-8d15-402d-8773-a37f5a61bed1"
     },
     {
       "name": "Crime Analysis",
       "description": "Project that processes major city crime data in the United States and generates visualizations through charts and maps.",
-      "image": "/static/images/project4.jpeg",
+      "image": "/images/project4.jpeg",
       "projectLink": "https://github.com/Drewrwhite/la_crime_analysis.git",
       "visualizationLink": "https://lookerstudio.google.com/reporting/5dafe154-fb0b-4188-8836-9249e075aacf"
     },
     {
       "name": "Airline Data ETL",
       "description": "Project demonstrating the use of data modeling prior to processing data with ETL pipeline.",
-      "image": "/static/images/project5.jpeg",
+      "image": "/images/project5.jpeg",
       "projectLink": "https://github.com/Drewrwhite/data_week_8.git",
       "visualizationLink": "https://github.com/Drewrwhite/data_week_8/blob/main/README.md"
     },
     {
       "name": "Quality of Life",
       "description": "Project that analyzes global quality of life data and generates visualizations through charts and maps.",
-      "image": "/static/images/project6.jpeg",
+      "image": "/images/project6.jpeg",
       "projectLink": "https://github.com/Drewrwhite/quality_of_life.git",
       "visualizationLink": "https://lookerstudio.google.com/reporting/52d48afb-bb2f-4cd3-b6ba-00984e39fbf5"
     },
     {
       "name": "Dice Roller Game",
       "description": "A fun Python dice roller application that uses ASCII diagrams for visualizations. Deployed to web for user interactivity with Flask.",
-      "image": "/static/images/project7.jpeg",
+      "image": "/images/project7.jpeg",
       "projectLink": "https://github.com/Drewrwhite/roll_dice.git",
       "visualizationLink": "http://swarmgbln.pythonanywhere.com/"
     },
     {
       "name": "Air Quality Index",
       "description": "Project that takes air quality data from 2 cities in China and demonstrates the use of an ETL pipeline.",
-      "image": "/static/images/project8.jpeg",
+      "image": "/images/project8.jpeg",
       "projectLink": "https://github.com/Drewrwhite/air_quality.git",
       "visualizationLink": "https://github.com/Drewrwhite/air_quality/blob/main/README.md"
     },
     {
       "name": "Spotify ETL",
       "description": "Using Python Pandas to perform an ETL pipeline on spotify data.",
-      "image": "/static/images/project9.jpeg",
+      "image": "/images/project9.jpeg",
       "projectLink": "https://github.com/Drewrwhite/data_week_4.git",
       "visualizationLink": "https://github.com/Drewrwhite/data_week_4.git/blob/main/README.md"
     }
