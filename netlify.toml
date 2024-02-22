@@ -1,4 +1,4 @@
 [build]
   functions = "functions"
-  publish = "templates"
+  publish = "public"
   command = "echo 'Build steps not required for static site'"
