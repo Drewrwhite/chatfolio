@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drew R. White</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/static/images/tree.ico">
+</head>
+<body class="dark-mode">
+    <div id="chat-container">
+        <div id="chat-box"></div>
+        <input type="text" id="chat-input" placeholder="Ask me anything...">
+        <button id="send-btn">Send</button>
+        <div id="suggestions">
+            <button class="suggestion-btn">Tell me about your projects.</button>
+            <button class="suggestion-btn">Tell me about yourself.</button>
+            <button class="suggestion-btn">How can I get into contact with you?</button>
+        </div>
+    </div>
+    <script src="/static/js/chat.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const chatBox = document.getElementById('chat-box');
+            const messages = ["Hi, I’m Drew! 👋 Thanks for checking out my portfolio! Feel free to chat with me to find out more about me and my journey in Data Engineering!"];
+            let currentChar = 0;
+            let currentMessage = 0;
+            function typeWriter() {
+                if (currentChar < messages[currentMessage].length) {
+                    chatBox.textContent += messages[currentMessage].charAt(currentChar);
+                    currentChar++;
+                    setTimeout(typeWriter, 50); // Adjust typing speed by changing the timeout duration (in ms)
+                }
+            }
+            typeWriter();
+        });
+    </script>
+</body>
+</html>
