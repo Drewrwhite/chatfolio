@@ -11,6 +11,10 @@ const aboutDataPath = path.join(dataDirectory, 'about.json');
 
 let projectsData, resumeData, aboutData;
 
+console.log("Projects Data:", projectsData);
+console.log("Resume Data:", resumeData);
+console.log("About Data:", aboutData);
+
 // Safely load JSON data
 try {
   projectsData = JSON.parse(fs.readFileSync(projectsDataPath, 'utf8'));
