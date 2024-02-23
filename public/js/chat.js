@@ -16,7 +16,7 @@ function markdownToHtml(markdown) {
     let html = markdown.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+?)\)/g, '<a href="$2" target="_blank">$1</a>');
 
     // Convert markdown bold to HTML bold
-    html = html.replace(/\*\*([^\*]+)\*\*/g, '<b>$1</b>:');
+    html = html.replace(/\*\*([^\*]+)\*\*/g, '<b>$1</b>');
 
     // Convert lines starting with a dash (with optional leading spaces) to bold, removing the dash
     // This regex accounts for optional spaces before the dash and ensures the conversion to bold text
