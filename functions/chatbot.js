@@ -90,7 +90,15 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
-    console.log("OpenAI response data:", data);
+    console.log("OpenAI API Response:", JSON.stringify(data, null, 2));
+
+    if (data.error) {
+      console.error("OpenAI API Error:", data.error);
+      return {
+          statusCode: 500,
+          body: JSON.stringify({ error: "OpenAI API Error: " + data.error.message })
+      };
+  }
 
     let formattedResponse = data.choices[0].message.content.trim();
 
