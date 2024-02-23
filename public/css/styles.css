@@ -11,14 +11,21 @@ body {
     display: flex;
     flex-direction: column; /* Stack children vertically */
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Use min-height to fill the viewport height */
+    padding-bottom: 20px; /* Add padding equal to footer height */
 }
 
 #header-banner {
     text-align: center;
-    padding: 5px;
+    padding-top: 15px;
+    padding-bottom: 5px;
     color: #f8f8f2; /* Dracula Foreground color */
     background-color: #282a36;
+    display: flex; /* Use flexbox to layout children */
+    justify-content: center; /* Center children horizontally */
+    align-items: baseline; /* Align children vertically in the center */
+    flex-wrap: wrap; /* Allow items to wrap if needed */
+    gap: 15px; /* Adjust the space between the elements */
 }
 
 #header-banner h1 {
@@ -26,7 +33,6 @@ body {
     font-weight: 700; /* Bold */
     font-size: 2.5em; /* Adjust size as needed */
     margin-top: 20px;
-    margin-bottom: 10px;
     padding: 0;
     color: #bd93f9; /* Dracula Green for contrast */
 }
@@ -35,7 +41,6 @@ body {
     font-family: 'Ubuntu', sans-serif;
     font-weight: 500; /* Medium */
     font-size: 1.5em; /* Slightly smaller than h1 */
-    margin: 10px 0; /* Adds a bit of spacing between h1 and h2 */
     color: #f8f8f2; /* Dracula Foreground color */
 }
 
@@ -53,6 +58,7 @@ body {
     width: 800px;
     border: 1px solid #44475a; /* Dracula Current Line */
     border-radius: 15px;
+    padding-top: 10px;
     overflow: hidden;
 }
 
@@ -63,7 +69,7 @@ body {
 
 #chat-box {
     font-family: 'Ubuntu', sans-serif;
-    height: 270px;
+    height: 275px;
     flex: 1;
     overflow-y: auto;
     padding: 10px;
@@ -160,3 +166,27 @@ a {
 a:hover {
     text-decoration: underline; /* Optional: adds underline on hover for better user interaction */
 }
+
+footer {
+    background-color: #282a36; /* Dracula Background */
+    color: #f8f8f2; /* Dracula Foreground */
+    text-align: center;
+    padding: 10px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .social-icons {
+    font-size: 18px;
+  }
+
+  .social-icons a {
+    color: #f8f8f2; /* Dracula Foreground */
+    margin: 0 10px;
+    transition: color 0.3s ease;
+  }
+
+  .social-icons a:hover {
+    color: #50fa7b; /* Dracula Green */
+  }
