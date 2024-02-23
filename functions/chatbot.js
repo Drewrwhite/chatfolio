@@ -90,7 +90,7 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
-    console.log("OpenAI API Response:", JSON.stringify(data, null, 2));
+    console.log("OpenAI response data:", data);
 
     let formattedResponse = data.choices[0].message.content.trim();
 
