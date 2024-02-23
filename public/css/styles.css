@@ -66,8 +66,23 @@ body {
     flex-direction: column;
 }
 
+#chat-box::-webkit-scrollbar {
+    width: 12px; /* Adjust the width of the scrollbar */
+}
+
+#chat-box::-webkit-scrollbar-track {
+    background: #44475a; /* Dracula Current Line for the track */
+}
+
+#chat-box::-webkit-scrollbar-thumb {
+    background-color: #282a36; /* Dracula Background for the thumb */
+    border-radius: 6px; /* Optional: Adds rounded corners to the scrollbar thumb */
+    border: 3px solid #44475a; /* Optional: Adds a border in the color of the track */
+}
+
 #chat-box {
     font-family: 'Ubuntu', sans-serif;
+    font-size: large;
     height: 250px;
     flex: 1;
     overflow-y: auto;
@@ -112,6 +127,7 @@ body {
     border: none;
     margin: 0;
     font-family: 'Ubuntu', sans-serif;
+    font-size:large;
     background-color: #44475a; /* Dracula Current Line */
     color: #f8f8f2; /* Dracula Foreground */
 }
@@ -151,10 +167,16 @@ body {
 
 .user-message {
     color: #50fa7b; /* Dracula Green for user messages */
+    font-size: large;
 }
 
 .bot-message {
     color: #8be9fd; /* Dracula Cyan for bot responses */
+    font-size: large;
+}
+
+.bot-message b, u {
+    color: #f8f8f2; /* Dracula Pink for bot responses */
 }
 
 a {

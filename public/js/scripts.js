@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
         if (currentChar < messages[currentMessage].length) {
             chatBox.textContent += messages[currentMessage].charAt(currentChar);
             currentChar++;
-            setTimeout(typeWriter, 50); // Adjust typing speed by changing the timeout duration (in ms)
+            setTimeout(typeWriter, 15); // Adjust typing speed by changing the timeout duration (in ms)
         }
     }
     typeWriter();

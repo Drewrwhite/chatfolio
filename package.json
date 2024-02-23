@@ -1,22 +1,26 @@
 {
-    "name": "portfolio-chatbot",
-    "version": "1.0.0",
-    "description": "My portfolio website with a chatbot feature powered by OpenAI and Netlify Functions.",
-    "main": "index.js",
-    "scripts": {
-      "start": "netlify dev",
-      "build": "echo 'No build step required'"
-    },
-    "dependencies": {
-      "dotenv": "^16.0.0",
-      "express": "^4.17.1",
-      "node-fetch": "^2.6.1",
-      "openai": "^2.0.0"
-    },
-    "devDependencies": {
-      "netlify-cli": "^10.0.0"
-    },
-    "author": "Drew R. White",
-    "license": "ISC"
-  }
-  
+  "name": "portfolio-chatbot",
+  "version": "1.0.0",
+  "description": "My portfolio website with a chatbot feature powered by OpenAI and Netlify Functions.",
+  "main": "index.js",
+  "scripts": {
+    "start": "netlify dev",
+    "build": "webpack --mode production",
+    "build:functions": "webpack --config webpack.config.js --mode production"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "openai": "^2.0.0"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^12.0.2",
+    "netlify-cli": "^10.0.0",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "author": "Drew R. White",
+  "license": "MIT",
+  "keywords": []
+}

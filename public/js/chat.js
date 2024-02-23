@@ -13,16 +13,29 @@ document.querySelectorAll('.suggestion-btn').forEach(button => {
 
 function markdownToHtml(markdown) {
     // Convert markdown links to HTML links
-    let html = markdown.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+    let html = markdown.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+?)\)/g, '<a href="$2" target="_blank">$1</a>');
 
     // Convert markdown bold to HTML bold
-    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/\*\*([^\*]+)\*\*/g, '<b>$1</b>:');
 
-    // Handle new lines for separation between projects
-    html = html.replace(/ - /g, '<br> - ');
+    // Convert lines starting with a dash (with optional leading spaces) to bold, removing the dash
+    // This regex accounts for optional spaces before the dash and ensures the conversion to bold text
+    html = html.replace(/^\s*-\s*([^*\n]+):/gm, '<b>$1</b>:');
 
-    // Insert new lines between projects for clarity
-    html = html.replace(/(\d\.)/g, '<br>$1');
+    html = html.replace(/^-\s*([^*\n]+):/gm, '<b>$1:</b>');
+
+    // Correctly close lists and remove any extra </ul> at the end
+    html = html.replace(/<\/ul>\n<\/ul>/g, '</ul>').replace(/<ul>\n<\/ul>/g, '');
+
+    // Handle paragraphs (double line breaks)
+    html = html.replace(/\n\n/g, '<p></p>');
+
+    // Single line breaks to <br> for better readability
+    html = html.replace(/\n/g, '<br>');
+
+    // Post-processing to clean up any malformed HTML due to replacements
+    html = html.replace(/<ul>\s*<br>/g, '<ul>').replace(/<br>\s*<\/ul>/g, '</ul>');
+    html = html.replace(/<\/ul><ul>/g, ''); // Remove consecutive <ul> tags created by lists
 
     return html;
 }
@@ -48,20 +61,60 @@ const sendMessage = async (message) => {
     displayMessage(data.message, 'bot');
 };
 
-
 const displayMessage = (message, sender) => {
     const chatBox = document.getElementById('chat-box');
     const messageElement = document.createElement('div');
-
-    if (sender === 'bot') {
-        // Convert markdown to HTML for bot messages
-        messageElement.innerHTML = markdownToHtml(message);
-    } else {
-        // Treat user messages as text
-        messageElement.textContent = message;
-    }
-
     messageElement.className = sender === 'user' ? 'user-message' : 'bot-message';
     chatBox.appendChild(messageElement);
-    chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+
+    if (sender === 'bot') {
+        // Split the markdown message into sections by double line breaks
+        const sections = message.split('\n\n');
+        let sectionIndex = 0;
+
+        const processSection = () => {
+            if (sectionIndex < sections.length) {
+                // Convert current section to HTML for final display
+                const htmlSection = markdownToHtml(sections[sectionIndex]);
+                // Use a temporary element to display the typing effect
+                const tempElement = document.createElement('div');
+                messageElement.appendChild(tempElement);
+
+                let charIndex = 0;
+                const typingSpeed = 10; // Adjust as needed
+                const plainTextSection = sections[sectionIndex].replace(/<[^>]*>?/gm, ''); // Remove HTML tags for typing effect
+
+                const typeWriter = () => {
+                    if (charIndex < plainTextSection.length) {
+                        // Append next character
+                        tempElement.textContent += plainTextSection[charIndex++];
+                        setTimeout(typeWriter, typingSpeed);
+                    } else {
+                        // Once typing effect is complete for the section, replace with HTML content
+                        tempElement.innerHTML = htmlSection;
+                        // Add double line break (or equivalent spacing) after the section
+                        if (sectionIndex < sections.length - 1) { // Check to avoid adding extra space after the last section
+                            const spacingElement = document.createElement('div');
+                            spacingElement.innerHTML = '<br>';
+                            messageElement.appendChild(spacingElement);
+                        }
+                        sectionIndex++;
+                        // Process the next section
+                        setTimeout(processSection, typingSpeed);
+                    }
+                };
+
+                typeWriter();
+            } else {
+                // Scroll to the bottom after all sections are displayed
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+        };
+
+        processSection();
+    } else {
+        // Treat user messages as text without typing effect
+        messageElement.textContent = message;
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
 };

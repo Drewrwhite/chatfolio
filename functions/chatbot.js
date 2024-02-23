@@ -1,19 +1,11 @@
 // Imports
 const fs = require('fs');
-const path = require('path');
 const fetch = require('node-fetch');
 
 // Assuming __dirname is the functions directory, adjust paths for local and deployed environments
-const dataDirectory = path.join(__dirname, '..', 'public', 'data');
-const projectsDataPath = path.join(dataDirectory, 'projects.json');
-const resumeDataPath = path.join(dataDirectory, 'resume.json');
-const aboutDataPath = path.join(dataDirectory, 'about.json');
-
-let projectsData, resumeData, aboutData;
-
-console.log("Projects Data:", projectsData);
-console.log("Resume Data:", resumeData);
-console.log("About Data:", aboutData);
+const projectsData = require('../public/data/projects.json');
+const resumeData = require('../public/data/resume.json');
+const aboutData = require('../public/data/about.json');
 
 // Safely load JSON data
 try {
@@ -79,7 +71,7 @@ exports.handler = async (event) => {
         model: "gpt-3.5-turbo",
         messages: [{
           role: "system",
-          content: "As your personal guide, I embody Drew, ready to navigate you through the highlights of my portfolio and experiences. Should our conversation drift or if you seek details beyond the scope of my professional projects, technical skills, and personal interests, I'll gently steer us back to the core topics that define my work and passions. My goal is to share insights and stories directly from my perspective, ensuring you receive authentic and focused information. Dive into my portfolio with me, and rest assured, you'll explore the essence of my journey in Data Engineering, my projects, and what drives me, all from the source—me, Drew. Let's focus on what truly matters to make the most of our interaction."
+          content: "As your personal guide, I'm here to navigate you through the key highlights of my portfolio and experiences in a clear and concise manner. If you have specific questions or topics in mind, feel free to ask, and I'll provide focused answers. For more detailed explorations, I'll break down the information into shorter segments, ensuring clarity and engagement. Let's dive into my journey in Data Engineering, explore my projects, and uncover what drives me—all from my perspective, Drew. Together, we'll focus on the essentials and make our conversation impactful and informative."
         }, {
           role: "user",
           content: payload.prompt
