@@ -1,0 +1,144 @@
+{
+    "name": "Drew White",
+    "title": "Data Engineer",
+    "location": "Portland, Oregon",
+    "contact": {
+      "email": "d.white0002@gmail.com",
+      "linkedin": "linkedin.com/in/drew-riley-white",
+      "website": "drewrwhite.com"
+    },
+    "work_experience": [
+      {
+        "title": "Data Engineer/Consultant",
+        "company": "Data Stack Academy | Consulting",
+        "location": "Portland, OR",
+        "duration": "May 2023 - Present",
+        "achievements": [
+          "Designed and implemented data architectures resulting in a 30% reduction in data processing time for clients.",
+          "Collaborated with multiple clients to understand their data requirements, delivering customized solutions tailored to their objectives.",
+          "Led the development of a comprehensive application that reduced response time to office actions in trademark law by 50%.",
+          "Utilized advanced AI algorithms, including RAG (Retrieval-Augmented Generation), to achieve an accuracy rate of 95% in response generation.",
+          "Conducted 1000+ hours of rigorous testing and fine-tuning processes to minimize errors and ensure compliance with legal standards.",
+          "Provided ongoing support and maintenance to deployed solutions, ensuring 99.9% uptime and reliability in dynamic environments."
+        ]
+      },
+      {
+        "title": "Data Engineer Intern",
+        "company": "Theo",
+        "location": "Portland, OR",
+        "duration": "March 2023 - May 2023",
+        "achievements": [
+          "Developed and maintained ETL pipelines using Python and SQL to process marketing data from various sources, including Meta, Google, and Act-On, resulting in a 50% reduction in data processing time and improved data accuracy by 20%.",
+          "Built APIs using Python to retrieve data from external sources, resulting in a 30% increase in data acquisition speed and 25% reduction in error rates.",
+          "Utilized Jenkins to schedule and automate ETL processes, improving efficiency and reducing manual errors.",
+          "Optimized database performance by conducting database tuning and index optimization, resulting in a 40% decrease in query execution time and improved system scalability.",
+          "Implemented data validation checks and data quality control measures, resulting in a 15% reduction in data inconsistency and improved data reliability."
+        ]
+      },
+      {
+        "title": "Managing Member (Data Engineer)",
+        "company": "Anvil Barber Co",
+        "location": "American Fork, UT",
+        "duration": "January 2014 - Present",
+        "achievements": [
+          "Founded and managed a successful barber business, achieving 100% growth in customer base and profit within the first 2 years.",
+          "Implemented data-driven strategies, including ETL pipelines using Python and SQL, reducing data processing time by 30%.",
+          "Designed and deployed a data warehouse solution for business analytics, increasing reporting speed by 50%.",
+          "Led the transition to a paperless practice, implementing an electronic booking system and optimizing business systems, reducing labor costs by 30% and overhead by 10%.",
+          "Implemented targeted marketing campaigns based on data analysis, resulting in a 75% increase in website interaction and a 40% increase in in-store sales compared to previous months."
+        ]
+      }
+    ],
+    "education": {
+      "institution": "Epicodus",
+      "location": "Portland, OR",
+      "duration": "October 2022 - April 2023",
+      "field_of_study": "Data Engineering"
+    },
+    "projects": [
+      {
+        "name": "Action Responder",
+        "url": "https://www.actionresponder.io/",
+        "technologies": "Python, Flask, OpenAI, NLTK, Pandas, NumPy, Scikit-learn, Google Cloud Platform (GCP), Google Cloud BigQuery, Google Cloud Vision API, WandB",
+        "description": "Led the development of an AI-driven Flask application, slashing trademark response drafting time by 50% for 200+ legal professionals. Engineered seamless integration with USPTO APIs, processing over 10,000 legal documents with 95%+ accuracy using OpenAI API. Orchestrated dynamic prompt management for GPT, enabling contextually relevant response generation for 5,000+ unique office actions."
+      },
+      {
+        "name": "Musical Journeys",
+        "url": "https://github.com/Drewrwhite/musical_journeys",
+        "technologies": "Python, Pandas, Spotipy, Scikit-learn, Librosa, Matplotlib, Jupyter Notebooks, Looker, GCP",
+        "description": "Developed music genre classifier achieving a .52 accuracy score. Processed over 10,000 unique songs for genre classification and recommendations. Implemented location-based suggestions for enhanced user experience."
+     },
+     {
+       "name": "Weather Database",
+       "url": "https://github.com/Drewrwhite/weather_database.git",
+       "technologies": "Apache Airflow, Python, Pandas, SQL, BeautifulSoup, Jupyter Notebooks, Looker, GCP",
+       "description": "Reduced data processing time by 40%, processing 50,000+ daily weather data points. Demonstrated potential with hourly and daily Airflow DAG triggers, collecting 500+ data points per day."
+     },
+     {
+       "name": "US Crime Analysis",
+       "url": "https://github.com/Drewrwhite/la_crime_analysis",
+       "technologies": "Python, Pandas, SQL, dbt, Jupyter Notebooks, Looker, GCP",
+       "description": "Transformed 3,000,000+ rows with ELT Pipeline. Visualized 5 analysis findings with Looker Studio."
+     }
+  ],
+  "skills": {
+    "programming_development": [
+      "Python",
+      "SQL",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Flask",
+      "SQLAlchemy",
+      "Typer",
+      "Git",
+      "CI/CD",
+      "Pytest",
+      "APIs",
+      "SDLC"
+    ],
+    "data_science_analytics": [
+      "NumPy",
+      "Pandas",
+      "Matplotlib",
+      "Scikit-learn",
+      "PySpark",
+      "Machine Learning",
+      "MySQL",
+      "Postgres",
+      "OpenAI",
+      "Weights and Biases",
+      "NLTK"
+    ],
+    "cloud_platforms_tools": {
+      "Google Cloud Platform": [
+        "App Engine",
+        "Firestore",
+        "Pub/Sub",
+        "Composer",
+        "AutoML",
+        "BigQuery",
+        "Redis",
+        "Cloud Vision",
+        "Looker Studio"
+      ],
+      "Azure": [
+        "App Service",
+        "CosmosDB",
+        "Synapse",
+        "Databricks",
+        "Data Explorer",
+        "Event Hubs"
+      ],
+      "Other": [
+        "Tableau",
+        "Apache Spark",
+        "Apache Airflow",
+        "Apache Kafka",
+        "Jenkins",
+        "Jupyter Notebooks",
+        "Docker"
+      ]
+    }
+  }
+}

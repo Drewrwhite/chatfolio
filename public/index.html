@@ -6,35 +6,32 @@
     <title>Drew R. White</title>
     <link rel="stylesheet" href="/css/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="/images/tree.ico">
 </head>
 <body class="dark-mode">
+    <header id="header-banner">
+        <h1>Chatfolio</h1>
+        <h2>Drew R. White</h2>
+    </header>
+    <div id="main-content">
     <div id="chat-container">
-        <div id="chat-box"></div>
-        <input type="text" id="chat-input" placeholder="Ask me anything...">
-        <button id="send-btn">Send</button>
-        <div id="suggestions">
-            <button class="suggestion-btn">Tell me about your projects.</button>
-            <button class="suggestion-btn">Tell me about yourself.</button>
-            <button class="suggestion-btn">How can I get into contact with you?</button>
+        <div id="chat-content">
+            <div id="chat-box"></div>
+            <div id="suggestions">
+                <button class="suggestion-btn">Tell me about your projects.</button>
+                <button class="suggestion-btn">Tell me about yourself.</button>
+                <button class="suggestion-btn">How can I get into contact with you?</button>
+            </div>
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Ask me anything...">
+            <button id="send-btn"><i class="fa fa-arrow-up"></i></button>
         </div>
     </div>
+    </div>
     <script src="/js/chat.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const chatBox = document.getElementById('chat-box');
-            const messages = ["Hi, I’m Drew! 👋 Thanks for checking out my portfolio! Feel free to chat with me to find out more about me and my journey in Data Engineering!"];
-            let currentChar = 0;
-            let currentMessage = 0;
-            function typeWriter() {
-                if (currentChar < messages[currentMessage].length) {
-                    chatBox.textContent += messages[currentMessage].charAt(currentChar);
-                    currentChar++;
-                    setTimeout(typeWriter, 50); // Adjust typing speed by changing the timeout duration (in ms)
-                }
-            }
-            typeWriter();
-        });
-    </script>
+    <script src="/js/scripts.js"></script>
 </body>
 </html>
