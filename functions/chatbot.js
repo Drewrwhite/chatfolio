@@ -9,7 +9,7 @@ const projectsDataPath = path.join(dataDirectory, 'projects.json');
 const resumeDataPath = path.join(dataDirectory, 'resume.json');
 const aboutDataPath = path.join(dataDirectory, 'about.json');
 
-let projectsData, aboutData;
+let projectsData, resumeData, aboutData;
 
 // Safely load JSON data
 try {
