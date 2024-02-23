@@ -33,7 +33,7 @@ function determineContext(prompt) {
       return JSON.stringify(resumeData);
   }
   // About-specific keywords
-  else if (lowerPrompt.includes("about me") || lowerPrompt.includes("contact info") || lowerPrompt.includes("personal") || lowerPrompt.includes("hobbies") || lowerPrompt.includes("ju-jitsu") || lowerPrompt.includes("music") || lowerPrompt.includes("outdoors") || lowerPrompt.includes("food") || lowerPrompt.includes("family") || lowerPrompt.includes("biography") || lowerPrompt.includes("background") || lowerPrompt.includes("origin") || lowerPrompt.includes("side business") || lowerPrompt.includes("interests") || lowerPrompt.includes("sport") || lowerPrompt.includes("ju jitsu") || lowerPrompt.includes("metal") || lowerPrompt.includes("fun") || lowerPrompt.includes("interests")) {
+  else if (lowerPrompt.includes("about") || lowerPrompt.includes("personal") || lowerPrompt.includes("hobbies") || lowerPrompt.includes("ju-jitsu") || lowerPrompt.includes("music") || lowerPrompt.includes("outdoors") || lowerPrompt.includes("food") || lowerPrompt.includes("family") || lowerPrompt.includes("biography") || lowerPrompt.includes("background") || lowerPrompt.includes("origin") || lowerPrompt.includes("side business") || lowerPrompt.includes("interests") || lowerPrompt.includes("sport") || lowerPrompt.includes("ju jitsu") || lowerPrompt.includes("metal") || lowerPrompt.includes("fun") || lowerPrompt.includes("interests")) {
       return JSON.stringify(aboutData);
   }
   return "";
@@ -90,7 +90,15 @@ exports.handler = async (event) => {
     });
 
     const data = await response.json();
-    console.log("OpenAI response data:", data);
+    console.log("OpenAI API Response:", JSON.stringify(data, null, 2));
+
+    if (data.error) {
+      console.error("OpenAI API Error:", data.error);
+      return {
+          statusCode: 500,
+          body: JSON.stringify({ error: "OpenAI API Error: " + data.error.message })
+      };
+  }
 
     let formattedResponse = data.choices[0].message.content.trim();
 
