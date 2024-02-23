@@ -39,6 +39,8 @@ function determineContext(prompt) {
   return "";
 }
 
+
+
 exports.handler = async (event) => {
   const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
@@ -60,7 +62,7 @@ exports.handler = async (event) => {
     };
   }
 
-  const contextString = determineContext(payload.prompt);
+  const contextString = determineContext(payload.prompt) || " ";
 
   try {
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
