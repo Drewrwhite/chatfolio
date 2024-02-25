@@ -12,22 +12,21 @@ function toggleNav() {
 document.addEventListener("DOMContentLoaded", function() {
     var links = document.querySelectorAll("#sideNav a");
 
-    var currentPath = window.location.pathname.endsWith('/') ? window.location.pathname.slice(0, -1) : window.location.pathname;
+    // Normalize the current path
+    var currentPath = window.location.pathname;
+    // Remove trailing slash if present
+    currentPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+    // Ensure a consistent comparison, especially if hosted in a subdirectory
     currentPath = currentPath.split('/').pop();
 
     links.forEach(function(link) {
-        var linkHref = link.getAttribute("href").endsWith('/') ? link.getAttribute("href").slice(0, -1) : link.getAttribute("href");
+        // Normalize href attribute for comparison
+        var linkHref = link.getAttribute("href");
+        linkHref = linkHref.endsWith('/') ? linkHref.slice(0, -1) : linkHref;
         linkHref = linkHref.split('/').pop();
 
         if (linkHref === currentPath) {
             link.classList.add("active");
         }
-
-        // Close nav on link click for mobile
-        link.addEventListener("click", function() {
-            if (window.innerWidth <= 700) {
-                sideNav.style.width = "0"; // Close nav
-            }
-        });
     });
 });
