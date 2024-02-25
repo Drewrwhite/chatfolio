@@ -13,7 +13,7 @@ The project has the following structure:
         - `resume.json`: This file contains resume data.
     - `chatbot-bundle.js`: This is the bundled JavaScript file for the chatbot.
 - `functions/`: This directory contains the source JavaScript files for the chatbot.
-    - `chatbotjs`: This is the main JavaScript file for the chatbot.
+    - `chatbot.js`: This is the main JavaScript file for the chatbot.
 - `public/`: This directory contains the HTML, CSS, and JavaScript files for the website.
     - `css/`: Directory of css files.
         - `styles.css`: This file contains the main CSS styles for the website.
