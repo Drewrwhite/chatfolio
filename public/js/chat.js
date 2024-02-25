@@ -12,40 +12,46 @@ document.querySelectorAll('.suggestion-btn').forEach(button => {
 });
 
 
+// function markdownToHtml(markdown) {
+//     // Convert markdown links to HTML links
+//     let html = markdown.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+?)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+//     // Convert markdown bold to HTML bold
+//     html = html.replace(/\*\*([^\*]+)\*\*/g, '<b>$1</b>');
+
+//     // Convert lines starting with a dash (with optional leading spaces) to bold, removing the dash
+//     // This regex accounts for optional spaces before the dash and ensures the conversion to bold text
+//     html = html.replace(/^\s*-\s*([^*\n]+):/gm, '<b>$1</b>:');
+//     html = html.replace(/^-\s*([^*\n]+):/gm, '<b>$1:</b>');
+
+//     // Convert markdown headers to HTML headers (up to h6)
+//     html = html.replace(/#{1,6}\s+([^#\n]+)/g, (match, p1) => {
+//         const level = match.trim().indexOf('#');
+//         return `<h${level}>${p1.trim()}</h${level}>`;
+//     });
+
+//     // Convert markdown unordered lists to HTML lists
+//     html = html.replace(/^- (.+)$/gm, '<ul><li>$1</li></ul>');
+
+//     // Convert markdown ordered lists to HTML lists
+//     html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>'); // Treat ordered lists as unordered lists without numbering
+
+//     // Handle paragraphs (double line breaks)
+//     html = html.replace(/\n\n/g, '<p></p>');
+
+//     // Single line breaks to <br> for better readability
+//     html = html.replace(/\n/g, '<br>');
+
+//     // Post-processing to clean up any malformed HTML due to replacements
+//     html = html.replace(/<ul>\s*<br>/g, '<ul>').replace(/<br>\s*<\/ul>/g, '</ul>');
+//     html = html.replace(/<\/ul><ul>/g, ''); // Remove consecutive <ul> tags created by lists
+
+//     return html;
+// }
+
 function markdownToHtml(markdown) {
-    // Convert markdown links to HTML links
-    let html = markdown.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+?)\)/g, '<a href="$2" target="_blank">$1</a>');
-
-    // Convert markdown bold to HTML bold
-    html = html.replace(/\*\*([^\*]+)\*\*/g, '<b>$1</b>');
-
-    // Convert lines starting with a dash (with optional leading spaces) to bold, removing the dash
-    // This regex accounts for optional spaces before the dash and ensures the conversion to bold text
-    html = html.replace(/^\s*-\s*([^*\n]+):/gm, '<b>$1</b>:');
-    html = html.replace(/^-\s*([^*\n]+):/gm, '<b>$1:</b>');
-
-    // Convert markdown headers to HTML headers (up to h6)
-    html = html.replace(/#{1,6}\s+([^#\n]+)/g, (match, p1) => {
-        const level = match.trim().indexOf('#');
-        return `<h${level}>${p1.trim()}</h${level}>`;
-    });
-
-    // Convert markdown unordered lists to HTML lists
-    html = html.replace(/^- (.+)$/gm, '<ul><li>$1</li></ul>');
-
-    // Convert markdown ordered lists to HTML lists
-    html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>'); // Treat ordered lists as unordered lists without numbering
-
-    // Handle paragraphs (double line breaks)
-    html = html.replace(/\n\n/g, '<p></p>');
-
-    // Single line breaks to <br> for better readability
-    html = html.replace(/\n/g, '<br>');
-
-    // Post-processing to clean up any malformed HTML due to replacements
-    html = html.replace(/<ul>\s*<br>/g, '<ul>').replace(/<br>\s*<\/ul>/g, '</ul>');
-    html = html.replace(/<\/ul><ul>/g, ''); // Remove consecutive <ul> tags created by lists
-
+    const converter = new showdown.Converter();
+    const html = converter.makeHtml(markdown);
     return html;
 }
 
@@ -77,6 +83,8 @@ const sendMessage = async (message) => {
     // Don't reset the button here; it will be reset after displayMessage completes
 };
 
+const stripHtmlTags = (text) => text.replace(/<\/?[^>]+(>|$)/g, "");
+
 const displayMessage = (message, sender) => {
     const chatBox = document.getElementById('chat-box');
     const messageElement = document.createElement('div');
@@ -90,7 +98,8 @@ const displayMessage = (message, sender) => {
 
         const processSection = () => {
             if (sectionIndex < sections.length) {
-                const htmlSection = markdownToHtml(sections[sectionIndex]);
+                const markdownText = stripHtmlTags(sections[sectionIndex]);
+                const htmlSection = markdownToHtml(markdownText);
                 const tempElement = document.createElement('div');
                 messageElement.appendChild(tempElement);
 
@@ -106,7 +115,7 @@ const displayMessage = (message, sender) => {
                         tempElement.innerHTML = htmlSection;
                         if (sectionIndex < sections.length - 1) {
                             const spacingElement = document.createElement('div');
-                            spacingElement.innerHTML = '<br>';
+                            spacingElement.innerHTML = '';
                             messageElement.appendChild(spacingElement);
                         }
                         sectionIndex++;

@@ -2,7 +2,6 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
 
-// Assuming __dirname is the functions directory, adjust paths for local and deployed environments
 const projectsData = require('../public/data/projects.json');
 const resumeData = require('../public/data/resume.json');
 const aboutData = require('../public/data/about.json');
@@ -80,7 +79,7 @@ exports.handler = async (event) => {
           content: contextString
         }],
         temperature: 0.5,
-        max_tokens: 600,
+        max_tokens: 1000,
         top_p: 1.0,
         frequency_penalty: 0.0,
         presence_penalty: 0.0
@@ -100,7 +99,6 @@ exports.handler = async (event) => {
 
     let formattedResponse = data.choices[0].message.content.trim();
 
-    // Example: wrapping the response in a paragraph tag
     formattedResponse = `<p>${formattedResponse}</p>`;
 
     // Corrected access to the response content
