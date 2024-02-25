@@ -51,6 +51,10 @@ function markdownToHtml(markdown) {
 
 const sendMessage = async (message) => {
     displayMessage(message, 'user');
+    const sendButton = document.getElementById('send-btn');
+    // Change the button to show the spinner icon
+    sendButton.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+
     const response = await fetch('/.netlify/functions/chatbot', {
         method: 'POST',
         headers: {
@@ -63,11 +67,14 @@ const sendMessage = async (message) => {
         const errorMessage = `An error occurred: ${response.statusText}`;
         console.error(errorMessage);
         displayMessage(errorMessage, 'bot');
+        // Reset the button content if there's an error
+        sendButton.innerHTML = '<i class="fa fa-arrow-up"></i>';
         return;
     }
 
     const data = await response.json();
     displayMessage(data.message, 'bot');
+    // Don't reset the button here; it will be reset after displayMessage completes
 };
 
 const displayMessage = (message, sender) => {
@@ -75,55 +82,51 @@ const displayMessage = (message, sender) => {
     const messageElement = document.createElement('div');
     messageElement.className = sender === 'user' ? 'user-message' : 'bot-message';
     chatBox.appendChild(messageElement);
+    const sendButton = document.getElementById('send-btn'); // Reference the send button here
 
     if (sender === 'bot') {
-        // Split the markdown message into sections by double line breaks
         const sections = message.split('\n\n');
         let sectionIndex = 0;
 
         const processSection = () => {
             if (sectionIndex < sections.length) {
-                // Convert current section to HTML for final display
                 const htmlSection = markdownToHtml(sections[sectionIndex]);
-                // Use a temporary element to display the typing effect
                 const tempElement = document.createElement('div');
                 messageElement.appendChild(tempElement);
 
                 let charIndex = 0;
-                const typingSpeed = 10; // Adjust as needed
-                const plainTextSection = sections[sectionIndex].replace(/<[^>]*>?/gm, ''); // Remove HTML tags for typing effect
+                const typingSpeed = 10;
+                const plainTextSection = htmlSection.replace(/<[^>]*>?/gm, '');
 
                 const typeWriter = () => {
                     if (charIndex < plainTextSection.length) {
-                        // Append next character
                         tempElement.textContent += plainTextSection[charIndex++];
                         setTimeout(typeWriter, typingSpeed);
                     } else {
-                        // Once typing effect is complete for the section, replace with HTML content
                         tempElement.innerHTML = htmlSection;
-                        // Add double line break (or equivalent spacing) after the section
-                        if (sectionIndex < sections.length - 1) { // Check to avoid adding extra space after the last section
+                        if (sectionIndex < sections.length - 1) {
                             const spacingElement = document.createElement('div');
                             spacingElement.innerHTML = '<br>';
                             messageElement.appendChild(spacingElement);
                         }
                         sectionIndex++;
-                        // Process the next section
                         setTimeout(processSection, typingSpeed);
                     }
                 };
 
                 typeWriter();
             } else {
-                // Scroll to the bottom after all sections are displayed
                 chatBox.scrollTop = chatBox.scrollHeight;
+                // Reset the button content back to the original state
+                sendButton.innerHTML = '<i class="fa fa-arrow-up"></i>';
             }
         };
 
         processSection();
     } else {
-        // Treat user messages as text without typing effect
         messageElement.textContent = message;
         chatBox.scrollTop = chatBox.scrollHeight;
     }
 };
+
+

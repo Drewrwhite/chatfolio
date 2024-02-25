@@ -107,6 +107,7 @@ h2 {
 #send-btn {
     position: absolute;
     right: 10px;
+    font-size: larger;
     top: 50%;
     transform: translateY(-50%);
     background-color: var(--dracula-green);
