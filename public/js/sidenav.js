@@ -11,17 +11,22 @@ function toggleNav() {
     }
 }
 document.addEventListener("DOMContentLoaded", function() {
-    // Get all the links in the side navigation
     var links = document.querySelectorAll("#sideNav a");
 
-    // Get the current page's URL path
-    var currentPath = window.location.pathname.split('/').pop();
+    // Normalize the current path
+    var currentPath = window.location.pathname;
+    // Remove trailing slash if present
+    currentPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
+    // Ensure a consistent comparison, especially if hosted in a subdirectory
+    currentPath = currentPath.split('/').pop();
 
-    // Iterate over each link in the side navigation
     links.forEach(function(link) {
-        // Get the href attribute of the link and compare it to the current URL path
-        if (link.getAttribute("href") === currentPath) {
-            // If they match, add the "active" class to the link
+        // Normalize href attribute for comparison
+        var linkHref = link.getAttribute("href");
+        linkHref = linkHref.endsWith('/') ? linkHref.slice(0, -1) : linkHref;
+        linkHref = linkHref.split('/').pop();
+
+        if (linkHref === currentPath) {
             link.classList.add("active");
         }
     });
