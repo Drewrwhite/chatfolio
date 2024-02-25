@@ -1,33 +1,33 @@
 function toggleNav() {
     var sideNav = document.getElementById("sideNav");
-    if (sideNav.style.width === "250px" || sideNav.style.width === "100%") {
-        sideNav.style.width = "0";
+    // Toggle based on current width and screen width
+    if (sideNav.style.width === "250px" || (sideNav.style.width === "100%" && window.innerWidth <= 700)) {
+        sideNav.style.width = "0"; // Close nav
     } else {
-        if (window.innerWidth <= 700) {
-            sideNav.style.width = "100%"; // Full screen on mobile
-        } else {
-            sideNav.style.width = "250px"; // Sidebar on desktop
-        }
+        // Open nav with appropriate width based on device
+        sideNav.style.width = window.innerWidth <= 700 ? "100%" : "250px";
     }
 }
+
 document.addEventListener("DOMContentLoaded", function() {
     var links = document.querySelectorAll("#sideNav a");
 
-    // Normalize the current path
-    var currentPath = window.location.pathname;
-    // Remove trailing slash if present
-    currentPath = currentPath.endsWith('/') ? currentPath.slice(0, -1) : currentPath;
-    // Ensure a consistent comparison, especially if hosted in a subdirectory
+    var currentPath = window.location.pathname.endsWith('/') ? window.location.pathname.slice(0, -1) : window.location.pathname;
     currentPath = currentPath.split('/').pop();
 
     links.forEach(function(link) {
-        // Normalize href attribute for comparison
-        var linkHref = link.getAttribute("href");
-        linkHref = linkHref.endsWith('/') ? linkHref.slice(0, -1) : linkHref;
+        var linkHref = link.getAttribute("href").endsWith('/') ? link.getAttribute("href").slice(0, -1) : link.getAttribute("href");
         linkHref = linkHref.split('/').pop();
 
         if (linkHref === currentPath) {
             link.classList.add("active");
         }
+
+        // Close nav on link click for mobile
+        link.addEventListener("click", function() {
+            if (window.innerWidth <= 700) {
+                sideNav.style.width = "0"; // Close nav
+            }
+        });
     });
 });
