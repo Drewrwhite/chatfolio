@@ -80,7 +80,7 @@ exports.handler = async (event) => {
           content: contextString
         }],
         temperature: 0.5,
-        max_tokens: 500,
+        max_tokens: 600,
         top_p: 1.0,
         frequency_penalty: 0.0,
         presence_penalty: 0.0

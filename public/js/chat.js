@@ -11,6 +11,7 @@ document.querySelectorAll('.suggestion-btn').forEach(button => {
     });
 });
 
+
 function markdownToHtml(markdown) {
     // Convert markdown links to HTML links
     let html = markdown.replace(/\[([^\]]+)\]\((https?:\/\/[^\s]+?)\)/g, '<a href="$2" target="_blank">$1</a>');
@@ -21,11 +22,19 @@ function markdownToHtml(markdown) {
     // Convert lines starting with a dash (with optional leading spaces) to bold, removing the dash
     // This regex accounts for optional spaces before the dash and ensures the conversion to bold text
     html = html.replace(/^\s*-\s*([^*\n]+):/gm, '<b>$1</b>:');
-
     html = html.replace(/^-\s*([^*\n]+):/gm, '<b>$1:</b>');
 
-    // Correctly close lists and remove any extra </ul> at the end
-    html = html.replace(/<\/ul>\n<\/ul>/g, '</ul>').replace(/<ul>\n<\/ul>/g, '');
+    // Convert markdown headers to HTML headers (up to h6)
+    html = html.replace(/#{1,6}\s+([^#\n]+)/g, (match, p1) => {
+        const level = match.trim().indexOf('#');
+        return `<h${level}>${p1.trim()}</h${level}>`;
+    });
+
+    // Convert markdown unordered lists to HTML lists
+    html = html.replace(/^- (.+)$/gm, '<ul><li>$1</li></ul>');
+
+    // Convert markdown ordered lists to HTML lists
+    html = html.replace(/^\d+\.\s+(.+)$/gm, '<li>$1</li>'); // Treat ordered lists as unordered lists without numbering
 
     // Handle paragraphs (double line breaks)
     html = html.replace(/\n\n/g, '<p></p>');

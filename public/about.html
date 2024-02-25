@@ -12,31 +12,21 @@
 
     <link rel="icon" href="/images/tree.ico">
 </head>
-<body class="dark-mode">
+<body>
+    <!-- Side Nav -->
     <div class="menu-icon" onclick="toggleNav()">&#9776;</div>
     <div id="sideNav" class="sidenav">
         <a href="index.html">Chatfolio</a>
         <a href="projects.html">Projects</a>
         <a href="about.html">About</a>
     </div>
-    <header id="header-banner">
-        <h1>Chatfolio</h1>
-        <h2>Drew R. White</h2>
+    <header>
+        <h1>About</h1>
     </header>
-    <div id="main-content">
-    <div id="chat-container">
-        <div id="chat-content">
-            <div id="chat-box"></div>
-                <div id="suggestions">
-                    <button class="suggestion-btn">Tell me about your projects.</button>
-                    <button class="suggestion-btn">Tell me about yourself.</button>
-                    <button class="suggestion-btn">How can I get into contact with you?</button>
-                </div>
-            </div>
-        <div id="chat-input-container">
-            <input type="text" id="chat-input" placeholder="Ask me anything...">
-            <button id="send-btn"><i class="fa fa-arrow-up"></i></button>
-        </div>
+    <div class="main-content">
+    <div class="about-section">
+        <img src="/images/about.jpg" alt="Its me!">
+        <p>My name is Drew and I currently live in Portland, Oregon. I am currently working as a Data Engineer while continuing to grow my skills more particularly in AI and LLMs. In addition to my main focus of data engineering, I also enjoy studying other elements of software development to assist in gaining a deeper understanding of the tech industry as a whole! In my free time, I enjoy creating and listening to music, doing Danzan Ryu Ju-Jitsu, enjoying and creating good food, spending time in the beautiful outdoors, exploring with my wife and two daughters.</p>
     </div>
     </div>
     <footer>
@@ -46,7 +36,5 @@
         </div>
     </footer>
 </body>
-<script src="/js/chat.js"></script>
-<script src="/js/scripts.js"></script>
 <script src="/js/sidenav.js"></script>
 </html>
