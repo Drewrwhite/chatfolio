@@ -49,11 +49,19 @@ document.querySelectorAll('.suggestion-btn').forEach(button => {
 //     return html;
 // }
 
+function preprocessEmails(markdown) {
+    // Regular expression to match email addresses
+    const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/gi;
+    // Replace email text with markdown mailto link
+    return markdown.replace(emailRegex, '[$1](mailto:$1)');
+}
+
 function markdownToHtml(markdown) {
+    const preprocessedMarkdown = preprocessEmails(markdown);
     const converter = new showdown.Converter({
         simplifiedAutoLink: true
     });
-    const html = converter.makeHtml(markdown);
+    const html = converter.makeHtml(preprocessedMarkdown);
     return html;
 }
 
