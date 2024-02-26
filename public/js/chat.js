@@ -50,7 +50,9 @@ document.querySelectorAll('.suggestion-btn').forEach(button => {
 // }
 
 function markdownToHtml(markdown) {
-    const converter = new showdown.Converter();
+    const converter = new showdown.Converter({
+        simplifiedAutoLink: true
+    });
     const html = converter.makeHtml(markdown);
     return html;
 }

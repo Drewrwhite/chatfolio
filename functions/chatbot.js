@@ -28,7 +28,7 @@ function determineContext(prompt) {
       return JSON.stringify(resumeData);
   }
   // About-specific keywords
-  else if (lowerPrompt.includes("about") || lowerPrompt.includes("personal") || lowerPrompt.includes("hobbies") || lowerPrompt.includes("ju-jitsu") || lowerPrompt.includes("music") || lowerPrompt.includes("outdoors") || lowerPrompt.includes("food") || lowerPrompt.includes("family") || lowerPrompt.includes("biography") || lowerPrompt.includes("background") || lowerPrompt.includes("origin") || lowerPrompt.includes("side business") || lowerPrompt.includes("interests") || lowerPrompt.includes("sport") || lowerPrompt.includes("ju jitsu") || lowerPrompt.includes("metal") || lowerPrompt.includes("fun") || lowerPrompt.includes("interests")) {
+  else if (lowerPrompt.includes("about") || lowerPrompt.includes("personal") || lowerPrompt.includes("hobbies") || lowerPrompt.includes("ju-jitsu") || lowerPrompt.includes("music") || lowerPrompt.includes("outdoors") || lowerPrompt.includes("food") || lowerPrompt.includes("family") || lowerPrompt.includes("biography") || lowerPrompt.includes("background") || lowerPrompt.includes("origin") || lowerPrompt.includes("side business") || lowerPrompt.includes("interests") || lowerPrompt.includes("sport") || lowerPrompt.includes("ju jitsu") || lowerPrompt.includes("metal") || lowerPrompt.includes("fun") || lowerPrompt.includes("interests") || lowerPrompt.includes("favorite") || lowerPrompt.includes("book") || lowerPrompt.includes("movie") || lowerPrompt.includes("color")) {
       return JSON.stringify(aboutData);
   }
   return "";

@@ -135,13 +135,16 @@ h3 {
 }
 
 #chat-input {
-    width: calc(100% - 20px);
+    font-family: 'Ubuntu', sans-serif;
+    width: calc(100% - 70px);
     height: 70px;
-    padding: 10px;
+    padding: 20px 70px 20px 10px;
     border: none;
     background-color: var(--dracula-current-line);
     color: var(--dracula-fg);
-    font-size: large;
+    resize: none;
+    overflow: auto;
+    font-size:larger;
 }
 
 #chat-input:focus {
