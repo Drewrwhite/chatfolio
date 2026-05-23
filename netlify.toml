@@ -1,4 +1,12 @@
 [build]
-  functions = "functions"
-  publish = "public"
-  command = "echo 'Build steps not required for static site'"
+  publish = "dist"
+  command = "npm run build"
+
+[dev]
+  framework = "#custom"
+  command = "vite"
+  targetPort = 5173
+  port = 8888
+
+[functions]
+  directory = "functions"

@@ -1,116 +1,73 @@
-// Imports
-const fs = require('fs');
-const fetch = require('node-fetch');
+const systemPrompt =
+  "You are a portfolio assistant for Drew White, a software engineer, data engineer, and musician based in Portland, Oregon. He built ActionResponder, an AI platform for trademark law workflows. His dev projects include ActionResponder, Musical Journeys (ML music genre classification), Weather Database (daily NWS scraper and historical DB), Crime Analysis (US city crime data visualizations), Airline Data ETL, Quality of Life (global data analysis), Air Quality Index ETL, Spotify ETL, a Dice Roller Flask app, and the Danzan Ryu PDX dojo website. He also has a solo project called 'From This Remove' — blackened, doomy death metal inspired by dissonance and atmosphere — with an EP called 'Epistemic Decay' in progress. He practices and teaches Danzan Ryu Jujitsu in Portland. Contact: linkedin.com/in/drew-riley-white and github.com/Drewrwhite. Be conversational, direct, and helpful. Keep responses concise and use plain prose — avoid markdown headings, avoid excessive bullet points, and do not use bold for section labels.";
 
-const projectsData = require('../public/data/projects.json');
-const resumeData = require('../public/data/resume.json');
-const aboutData = require('../public/data/about.json');
-
-// Safely load JSON data
-try {
-  projectsData = JSON.parse(fs.readFileSync(projectsDataPath, 'utf8'));
-  resumeData = JSON.parse(fs.readFileSync(resumeDataPath, 'utf8'));
-  aboutData = JSON.parse(fs.readFileSync(aboutDataPath, 'utf8'));
-} catch (error) {
-  console.error("Error loading data files:", error);
-}
-
-// Helper function to determine the context based on the user's prompt
-function determineContext(prompt) {
-  const lowerPrompt = prompt.toLowerCase();
-
-  // Projects-specific keywords
-  if (lowerPrompt.includes("projects") || lowerPrompt.includes("action responder") || lowerPrompt.includes("musical journeys") || lowerPrompt.includes("weather database") || lowerPrompt.includes("crime analysis") || lowerPrompt.includes("airline data") || lowerPrompt.includes("quality of life") || lowerPrompt.includes("dice roller game") || lowerPrompt.includes("air quality index") || lowerPrompt.includes("spotify etl")) {
-      return JSON.stringify(projectsData);
+export const handler = async (event) => {
+  if (event.httpMethod !== "POST") {
+    return { statusCode: 405, body: "Method Not Allowed" };
   }
-  // Resume-specific keywords
-  else if (lowerPrompt.includes("experience") || lowerPrompt.includes("data engineer") || lowerPrompt.includes("python") || lowerPrompt.includes("sql") || lowerPrompt.includes("etl pipelines") || lowerPrompt.includes("cloud platforms") || lowerPrompt.includes("consultant") || lowerPrompt.includes("intern") || lowerPrompt.includes("managing member") || lowerPrompt.includes("data architecture") || lowerPrompt.includes("ai algorithms") || lowerPrompt.includes("data science") || lowerPrompt.includes("programming") || lowerPrompt.includes("development") || lowerPrompt.includes("analytics") || lowerPrompt.includes("school") || lowerPrompt.includes("education") || lowerPrompt.includes("tech") || lowerPrompt.includes("skills") || lowerPrompt.includes("contact")) {
-      return JSON.stringify(resumeData);
-  }
-  // About-specific keywords
-  else if (lowerPrompt.includes("about") || lowerPrompt.includes("personal") || lowerPrompt.includes("hobbies") || lowerPrompt.includes("ju-jitsu") || lowerPrompt.includes("music") || lowerPrompt.includes("outdoors") || lowerPrompt.includes("food") || lowerPrompt.includes("family") || lowerPrompt.includes("biography") || lowerPrompt.includes("background") || lowerPrompt.includes("origin") || lowerPrompt.includes("side business") || lowerPrompt.includes("interests") || lowerPrompt.includes("sport") || lowerPrompt.includes("ju jitsu") || lowerPrompt.includes("metal") || lowerPrompt.includes("fun") || lowerPrompt.includes("interests") || lowerPrompt.includes("favorite") || lowerPrompt.includes("book") || lowerPrompt.includes("movie") || lowerPrompt.includes("color")) {
-      return JSON.stringify(aboutData);
-  }
-  return "";
-}
 
-
-
-exports.handler = async (event) => {
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-
-  let payload;
-  try {
-    payload = JSON.parse(event.body);
-  } catch (error) {
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
     return {
-      statusCode: 400,
-      body: JSON.stringify({ error: "Invalid JSON in request body" })
+      statusCode: 500,
+      body: JSON.stringify({ error: "API key not configured on server." }),
     };
   }
 
-  // Check if the payload contains the required 'prompt' field
-  if (!payload || typeof payload.prompt !== 'string') {
+  let body;
+  try {
+    body = JSON.parse(event.body);
+  } catch {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: "Missing or invalid 'prompt' in request body" })
+      body: JSON.stringify({ error: "Invalid request body." }),
     };
   }
 
-  const contextString = determineContext(payload.prompt) || " ";
+  const { messages } = body;
+  if (!Array.isArray(messages) || messages.length === 0) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ error: "messages must be a non-empty array." }),
+    };
+  }
 
   try {
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+    const response = await fetch("https://api.anthropic.com/v1/messages", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${OPENAI_API_KEY}`
+        "content-type": "application/json",
+        "x-api-key": apiKey,
+        "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        messages: [{
-          role: "system",
-          content: "As your personal guide, I'm here to navigate you through the key highlights of my portfolio and experiences in a clear and concise manner. If you have specific questions or topics in mind, feel free to ask, and I'll provide focused answers. For more detailed explorations, I'll break down the information into shorter segments, ensuring clarity and engagement. Let's dive into my journey in Data Engineering, explore my projects, and uncover what drives me—all from my perspective, Drew. Together, we'll focus on the essentials and make our conversation impactful and informative."
-        }, {
-          role: "user",
-          content: payload.prompt
-        }, {
-          role: "assistant",
-          content: contextString
-        }],
-        temperature: 0.5,
-        max_tokens: 1000,
-        top_p: 1.0,
-        frequency_penalty: 0.0,
-        presence_penalty: 0.0
-      })
+        model: "claude-haiku-4-5",
+        max_tokens: 1024,
+        system: systemPrompt,
+        messages,
+      }),
     });
 
     const data = await response.json();
-    console.log("OpenAI API Response:", JSON.stringify(data, null, 2));
 
-    if (data.error) {
-      console.error("OpenAI API Error:", data.error);
+    if (!response.ok) {
       return {
-          statusCode: 500,
-          body: JSON.stringify({ error: "OpenAI API Error: " + data.error.message })
+        statusCode: response.status,
+        body: JSON.stringify({ error: data.error?.message || "Anthropic API error." }),
       };
-  }
+    }
 
-    let formattedResponse = data.choices[0].message.content.trim();
-
-    formattedResponse = `<p>${formattedResponse}</p>`;
-
-    // Corrected access to the response content
     return {
       statusCode: 200,
-      body: JSON.stringify({ message: formattedResponse })
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(data),
     };
-  } catch (error) {
-    // Handle any errors that occur during the fetch operation
+  } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Internal Server Error: " + error.message })
+      body: JSON.stringify({ error: "Internal server error." }),
     };
   }
 };
+
+

@@ -1,37 +1,29 @@
 # Chatfolio
 
-My portfolio with an integrated chatbot to help guide through my professional experience as well as bits about me
+React and Vite rebuild of drewrwhite.com with the "Ash & Ember" visual direction: bone-toned typography, ember accents, smoke textures, and a browser-side Anthropic-powered Chatfolio.
+
+## Development
+
+1. Install dependencies with `npm install`
+2. Create a local `.env` file from `.env.example`
+3. Start the app with `npm run dev`
+4. Build for production with `npm run build`
+
+## Environment
+
+The chat UI reads the Anthropic key from `VITE_ANTHROPIC_API_KEY`.
 
 ## Structure
 
-The project has the following structure:
+- `src/`: React app source.
+- `public/images/`: Existing site imagery, including `DRWHEADER.png`, `ARNEW.png`, favicons, and project art.
+- `public/data/`: Legacy JSON content retained in place.
+- `public/_redirects`: SPA routing rule for Netlify.
+- `functions/`: Legacy serverless code retained in the repository but no longer used by the React app.
 
-- `built-functions/`: This directory contains the built JavaScript files for Chatfolio.
-    - `data/`: This directory contains JSON data used by the Chatfolio's serverless function.
-        - `about.json`: This file contains data about me.
-        - `projects.json`: This file contains data about projects.
-        - `resume.json`: This file contains resume data.
-    - `chatbot-bundle.js`: This is the bundled JavaScript file for the chatbot.
-- `functions/`: This directory contains the source JavaScript files for the chatbot.
-    - `chatbot.js`: This is the main JavaScript file for the chatbot.
-- `public/`: This directory contains the HTML, CSS, and JavaScript files for the website.
-    - `css/`: Directory of css files.
-        - `styles.css`: This file contains the main CSS styles for the website.
-    - `js/`: Directory of website JavaScript files.
-        - `chat.js`: This file contains the JavaScript code for the chat functionality.
-        - `scripts.js`: This file contains the main JavaScript code for the website.
-        - `sidenav.js`: This file contains the JavaScript code for the side navigation functionality.
-    - `data/`: This directory contains JSON data used by Chatfolio.
-        - `about.json`: This file contains data about me.
-        - `projects.json`: This file contains data about projects.
-        - `resume.json`: This file contains resume data.
-    - `images/`: This directory contains images used by Chatfolio.
-    - `index.html`: This is the main HTML file for the website (Chatfolio landing page).
-    - `projects.html`: This HTML file contains the projects page.
-    - `about.html`: This HTML file contains the about page.
-- `netlify.toml`: This file contains configuration for Netlify.
-- `package.json`: This file contains the list of npm dependencies.
-- `webpack.config.js`: This file contains configuration for Webpack.
+## Deployment
+
+Netlify builds the site with `npm run build` and publishes `dist/`.
 
 ## License
 
