@@ -855,11 +855,14 @@ input {
   }
 
   .ep-layout {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
   }
 
   .ep-cover {
-    max-width: 240px;
+    width: 100%;
+    max-width: 280px;
     margin: 0 auto;
   }
 }
