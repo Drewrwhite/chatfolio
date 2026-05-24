@@ -107,7 +107,11 @@ function ChatfolioChat() {
         </div>
       ) : null}
 
-      <div className="chat-shell card">
+      <div className="chat-shell">
+        <div className="chat-header">
+          <span className="chat-header-dot" aria-hidden="true" />
+          <span className="chat-header-title">chatfolio</span>
+        </div>
         <div className="message-window" ref={messageWindowRef}>
           {messages.length === 0 ? (
             <div className="assistant-message ritual-intro">
