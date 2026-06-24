@@ -1,7 +1,7 @@
 const tracks = [
-  "The Infinite, Unseen",
+  "Infinite, Unseen",
   "Where Belief Turns to Bone",
-  "The Weight of Stillness",
+  "Weight of Stillness",
   "Emptied",
   "Epistemic Decay",
   "Perdition without Periphery",
