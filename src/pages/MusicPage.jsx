@@ -1,10 +1,11 @@
 const tracks = [
-  "Infinite, Unseen",
-  "Where Belief Turns to Bone",
-  "Weight of Stillness",
-  "Emptied",
-  "Epistemic Decay",
-  "Perdition without Periphery",
+  "Infinite, unseen",
+  "From this remove",
+  "Tide of decay",
+  "Hollowed faces",
+  "Choked by earth",
+  "The red mouth",
+  "Ground (Celtic Frost cover)",
 ];
 
 function MusicPage() {
@@ -17,19 +18,19 @@ function MusicPage() {
 
       <article className="card music-card">
         <div className="music-head">
-          <h2>From This Remove</h2>
+          <h2>WightDross</h2>
           <span className="status-badge">IN PROGRESS</span>
         </div>
         <hr className="section-rule section-rule-compact" />
 
         <div className="ep-layout">
           <img
-            src="/images/IMG_8412.PNG"
-            alt="Epistemic Decay EP cover"
+            src="/images/WIGHTDROSS.PNG"
+            alt="From this remove EP cover"
             className="ep-cover"
           />
           <div className="ep-details">
-            <h3>Epistemic Decay</h3>
+            <h3>From this remove</h3>
             <ol className="track-list">
               {tracks.map((track) => (
                 <li key={track}>{track}</li>
