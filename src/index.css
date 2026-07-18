@@ -209,21 +209,89 @@ input {
   background:
     linear-gradient(180deg, rgba(115, 64, 74, 0.06), transparent 14%),
     rgba(9, 9, 9, 0.97);
-  border: 1px solid rgba(115, 64, 74, 0.18);
+  border: none;
   border-radius: var(--radius-panel);
   padding: 2.75rem;
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.03),
     0 20px 52px rgba(0, 0, 0, 0.38);
   transition:
-    border-color 0.25s ease,
     box-shadow 0.25s ease,
     transform 0.25s ease;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(
+      to right,
+      transparent,
+      var(--color-accent-dim) 20%,
+      var(--color-accent) 50%,
+      var(--color-accent-dim) 80%,
+      transparent
+    ),
+    linear-gradient(
+      to right,
+      transparent,
+      var(--color-accent-dim) 20%,
+      var(--color-accent) 50%,
+      var(--color-accent-dim) 80%,
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      var(--color-accent-dim) 20%,
+      var(--color-accent) 50%,
+      var(--color-accent-dim) 80%,
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      var(--color-accent-dim) 20%,
+      var(--color-accent) 50%,
+      var(--color-accent-dim) 80%,
+      transparent
+    );
+  background-size:
+    100% 4px,
+    100% 4px,
+    4px 100%,
+    4px 100%;
+  background-position: top, bottom, left, right;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  -webkit-mask-image:
+    url("/images/grungehr.svg"), url("/images/grungehr.svg"),
+    url("/images/grungevr.svg"), url("/images/grungevr.svg");
+  mask-image:
+    url("/images/grungehr.svg"), url("/images/grungehr.svg"),
+    url("/images/grungevr.svg"), url("/images/grungevr.svg");
+  -webkit-mask-size:
+    100% 4px,
+    100% 4px,
+    4px 100%,
+    4px 100%;
+  mask-size:
+    100% 4px,
+    100% 4px,
+    4px 100%,
+    4px 100%;
+  -webkit-mask-position: top, bottom, left, right;
+  mask-position: top, bottom, left, right;
+  -webkit-mask-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  mask-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
 }
 
 .card::after {
   content: "";
   position: absolute;
+  z-index: 3;
   inset: -14px;
   background: url("/images/grungeborder.png") center / 100% 100% no-repeat;
   mix-blend-mode: screen;
@@ -233,7 +301,6 @@ input {
 }
 
 .card:hover {
-  border-color: rgba(191, 128, 128, 0.3);
   box-shadow:
     0 20px 56px rgba(0, 0, 0, 0.46),
     0 0 40px var(--color-accent-glow),
@@ -915,7 +982,7 @@ input {
 }
 
 .project-card {
-  padding: 0;
+  padding: 1px 1px 0;
   overflow: hidden;
 }
 
@@ -926,6 +993,7 @@ input {
 .project-image {
   width: 100%;
   height: 180px;
+  border-radius: var(--radius-panel) var(--radius-panel) 0 0;
   object-fit: cover;
   filter: saturate(0.65) brightness(0.8);
   transition: filter 0.3s ease;

@@ -38,7 +38,7 @@ function MusicPage() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Visit WightDrossMusic.com ↗
+            Visit WightDrossMusic.com ↗︎
           </a>
         </div>
 
