@@ -1,3 +1,10 @@
+import {
+  SiBandcamp,
+  SiSpotify,
+  SiApplemusic,
+  SiSoundcloud,
+} from "react-icons/si";
+
 const tracks = [
   "Infinite, unseen",
   "From this remove",
@@ -23,9 +30,21 @@ function MusicPage() {
         </div>
         <hr className="section-rule section-rule-compact" />
 
+        <div className="music-cta">
+          <span className="eyebrow">Now Live</span>
+          <a
+            className="link-underline"
+            href="https://wightdrossmusic.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit WightDrossMusic.com ↗
+          </a>
+        </div>
+
         <div className="ep-layout">
           <img
-            src="/images/WIGHTDROSS.PNG"
+            src="/images/WIGHTDROSS.png"
             alt="From this remove EP cover"
             className="ep-cover"
           />
@@ -39,42 +58,40 @@ function MusicPage() {
           </div>
         </div>
 
-        <div className="music-links">
-          <a
-            className="btn btn-small btn-disabled"
-            href="#"
+        <div className="listen-links">
+          <span
+            className="listen-links__link is-disabled"
             aria-disabled="true"
-            onClick={(e) => e.preventDefault()}
+            title="Bandcamp — coming soon"
           >
-            Bandcamp
-          </a>
-          <a
-            className="btn btn-small btn-disabled"
-            href="#"
+            <SiBandcamp />
+            <span className="sr-only">Bandcamp (coming soon)</span>
+          </span>
+          <span
+            className="listen-links__link is-disabled"
             aria-disabled="true"
-            onClick={(e) => e.preventDefault()}
+            title="Spotify — coming soon"
           >
-            Spotify
-          </a>
-          <a
-            className="btn btn-small btn-disabled"
-            href="#"
+            <SiSpotify />
+            <span className="sr-only">Spotify (coming soon)</span>
+          </span>
+          <span
+            className="listen-links__link is-disabled"
             aria-disabled="true"
-            onClick={(e) => e.preventDefault()}
+            title="Apple Music — coming soon"
           >
-            Apple Music
-          </a>
-        </div>
-
-        <div className="music-other-links">
-          <span className="music-other-label">Other music</span>
+            <SiApplemusic />
+            <span className="sr-only">Apple Music (coming soon)</span>
+          </span>
           <a
-            className="btn btn-small"
+            className="listen-links__link"
             href="https://soundcloud.com/drew-r-white"
             target="_blank"
             rel="noopener noreferrer"
+            title="SoundCloud"
           >
-            SoundCloud
+            <SiSoundcloud />
+            <span className="sr-only">SoundCloud</span>
           </a>
         </div>
       </article>

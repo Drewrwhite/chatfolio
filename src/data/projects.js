@@ -8,6 +8,14 @@ export const projects = [
         links: [{ label: 'View', href: 'https://www.actionresponder.io/' }],
     },
     {
+        title: 'WightDross Music',
+        description:
+            'A standalone site for WightDross, hosting releases, lore, and updates for the metal project founded by Drew R. White.',
+        image: '/images/wightdrossmusic.png',
+        tags: ['React', 'Vite', 'Music', 'Web'],
+        links: [{ label: 'View', href: 'https://wightdrossmusic.com' }],
+    },
+    {
         title: 'Musical Journeys',
         description:
             'A music genre classification project that pairs model predictions with recommendation logic and place-based discovery.',
