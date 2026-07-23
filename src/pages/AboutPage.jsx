@@ -1,4 +1,13 @@
+import { usePageMeta } from "../hooks/usePageMeta";
+
 function AboutPage() {
+  usePageMeta({
+    title: "About",
+    description:
+      "Drew White is a software engineer and data engineer based in Portland, Oregon.",
+    path: "/about",
+  });
+
   return (
     <section className="section-shell page-section">
       <div className="section-heading">

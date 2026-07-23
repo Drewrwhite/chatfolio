@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import AboutPage from "./pages/AboutPage";
 import HomePage from "./pages/HomePage";
 import MusicPage from "./pages/MusicPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import ProjectsPage from "./pages/ProjectsPage";
 
 function ScrollToTop() {
@@ -27,6 +28,7 @@ function App() {
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/music" element={<MusicPage />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>
         <Footer />

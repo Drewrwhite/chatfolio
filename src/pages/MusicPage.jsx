@@ -4,6 +4,7 @@ import {
   SiApplemusic,
   SiSoundcloud,
 } from "react-icons/si";
+import { usePageMeta } from "../hooks/usePageMeta";
 
 const tracks = [
   "Infinite, unseen",
@@ -16,6 +17,13 @@ const tracks = [
 ];
 
 function MusicPage() {
+  usePageMeta({
+    title: "Music",
+    description:
+      "WightDross — metal music written and recorded by Drew R. White.",
+    path: "/music",
+  });
+
   return (
     <section className="section-shell page-section">
       <div className="section-heading">
